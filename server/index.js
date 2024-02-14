@@ -1,4 +1,5 @@
 const express = require('express'); //creating express server
+const cors = require('cors'); //need to import cors so that react frontend ui works
 require('dotenv').config();
 const { graphqlHTTP } = require('express-graphql');
 const schema = require('./schema/schema'); // importing schema file that's inside schema folder
@@ -8,6 +9,8 @@ const app = express();
 
 //connect to db
 connectDB();
+
+app.use(cors());
 
 app.use('/graphql', graphqlHTTP({
     schema: schema,
